@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="MxTechies.parallaxtilt.ParallaxTilt" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>Parallax Tilt</name>
+    <description>To dynamically tilt my ui element</description>
+    <icon>
+        iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAABp1BMVEUAAABV//9mzP9LtP9Ms/9Jtv9NsvdJsfpLtPpJsfdJsfhJsvhJsvdKsvdJsPhKsPhJsfdJsPhJsfdIsfhJsfdIsPdJsfhJsfhJsPhJsPhIsfhIsPdJsPdKsPdKsfdNsvdOsvdPs/dQs/dRtPdStPdTtPdUtfdWtvdXtvdauPdcuPdeufdeufhguvhiu/hju/hkvPhmvfhnvfhpvvhrv/huwPhvwfhxwfhywvhzwvh4xfl5xfl6xfl8xvl9xvl9x/mByPmCyfmFyvmGyvmJzPmKzPmLzfmNzvqPzvqQz/qT0PqU0PqU0fqX0vqY0vqa0/qe1fqg1vqj1/uk1/un2fup2vut2/uv3Puw3Puw3fuz3vu13/u23/u34Pu44Pu64fu64fy84vy94vy+4/y/4/zD5fzE5fzG5vzH5vzI5/zK6PzL6PzR6/zT7P3U7P3V7f3W7f3Y7v3Z7v3c8P3e8f3f8f3g8f3i8v3l8/3l9P3n9P3r9v7t9/7u9/7v+P7w+P7x+f7y+f70+v71+v74/P75/P76/f77/f78/f78/v79/v7+/v7////6dMsRAAAAG3RSTlMAAwURGxwhMTNic3SEh4iVp7XBzejt7vH5/f6PsMNWAAABsklEQVR4AWIYfGAUjIJRMAqYuYREJKWJAqLCPGwY+jnFpEkBEryMqPr5pEkFgkwo9kuTDviR/S9GhgFSHAgDuKXJAQIIA4TIMkAcEY4i0mQBVrgBkuQZwA43QJo8wIFhQEhEOIBQOutHJozDOP5Crp4e1RhkJ0tKGJFd6oNEdtmJyEIzpaZl5nrRZgaHM/2Pf5/vwXXfyagXgG93bwSAlEolowLMm9w83gibhXH2gKKVdD67gTnWjwCk+VVjMQS4suSnnjMLRVFc9sAHvAX2A9fySaXNBMbEZVUWscaHIMRuqwBgD8hDEbnsRmfjUKJkAQZGCTlO/xWBwIADQLIZBlY441MvfoF1xlFS/4fy+bzXKh4dgNJE7L3eh3tmtuWa+AMcMIY3dgUvZQpGEYmMw2kD7HC+R29UqyoXLaBd0QZxzgXgikLLDSqJTKU5HOcS0MsbA9jPqtwCRvXm2eorBbNIJBw3KJ9O4Yl+AAXdnyaLt7PWN3jRWLvzmAVp94zO5+n41/onfo/UpExxZqI0O7NQr0DhIq9Io7hQpbRYp7hiobRqo6ByFcNWuY6CUTAKRgEAo8X0lBD3V30AAAAASUVORK5CYII=
+    </icon>
+    <properties>
+       
+ <propertyGroup caption="General">
+            <property key="orientationKey" type="enumeration" defaultValue="horizontal">
+        <caption>orientation</caption>
+        <description>orientation setting</description>
+        <enumerationValues>
+            <enumerationValue key="horizontal">horizontal</enumerationValue>
+            <enumerationValue key="vertical">vertical</enumerationValue>
+            
+        </enumerationValues>
+        </property>
+                        
+            <property key="data" type="datasource" isList="true" required="true">
+                <caption>Data source for slides</caption>
+                <description />
+            </property>
+            <property key="contentTemplate" type="widgets" dataSource="data" required="true">
+                <caption>Content</caption>
+                <description>Content of a box</description>
+            </property>
+            
+        </propertyGroup>
+        <propertyGroup caption="Configurations">
+            <property key="tiltEnableKey" type="boolean" required="true" defaultValue="true">
+                <caption>tiltEnable</caption>
+                <description>Enables/disables the tilt effect.</description>
+            </property>
+            <property key="tiltMaxAngleXKey" type="integer" required="true" defaultValue="20">
+                <caption>tiltMaxAngleX</caption>
+                <description>Maximum tilt rotation (in degrees) on the x-axis. Range: 0°-90°.</description>
+            </property>
+            <property key="tiltMaxAngleYKey" type="integer" required="true" defaultValue="20">
+                <caption>tiltMaxAngleY</caption>
+                <description>Maximum tilt rotation (in degrees) on the y-axis. Range: 0°-90°.</description>
+            </property>
+            <property key="glareEnableKey" type="boolean" required="true" defaultValue="true">
+                <caption>glareEnable</caption>
+                <description>Enables/disables the glare effect.</description>
+            </property>
+            <property key="glareMaxOpacityKey" type="decimal" required="true" defaultValue="0.7">
+                <caption>glareMaxOpacity</caption>
+                <description>Maximum glare opacity (0.5 = 50%, 1 = 100%). Range: 0-1</description>
+            </property>
+            <property key="glareColorKey" type="string" required="true" >
+                <caption>glareColor</caption>
+                <description>Sets the color of the glare effect.</description>
+            </property>
+            <property key="glarePositionKey" type="string" required="true" >
+                <caption>glarePosition</caption>
+                <description>Sets the position of the glare effect.</description>
+            </property>
+            <property key="scaleKey" type="decimal" required="true" defaultValue="1.1">
+                <caption>Scale</caption>
+                <description>Scale of the component (1.5 = 150%, 2 = 200%).</description>
+            </property>
+            <property key="perspectiveKey" type="integer" required="true" defaultValue="1000">
+                <caption>perspective</caption>
+                <description>Defines how far the tilt component appears from the user. Lower values create more extreme tilt effects.</description>
+            </property>
+            <property key="transitionEasingKey" type="string" required="true" >
+                <caption>transitionEasing</caption>
+                <description>Easing function for the transition.</description>
+            </property>
+            <property key="transitionSpeedKey" type="integer" required="true" defaultValue="1000">
+                <caption>transitionSpeed</caption>
+                <description>Speed of the transition.</description>
+            </property>
+            <property key="flipVerticallyKey" type="boolean" required="true" defaultValue="false">
+                <caption>flip Vertically</caption>
+                <description>Enables/disables vertical flipping of the component.</description>
+            </property>
+            <property key="flipHorizontallyKey" type="boolean" required="true" defaultValue="false">
+                <caption>flip Horizontally</caption>
+                <description>Enables/disables horizontal flipping of the component.</description>
+            </property>
+        
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <property key="onMoveAction" type="action" required="false">
+                <caption>On move action</caption>
+                <description>Action to trigger when parallax is moved</description>
+            </property>
+             <property key="onEnterAction" type="action" required="false">
+                <caption>On enter action</caption>
+                <description>Action to trigger when parallax is entered</description>
+            </property>
+             <property key="onLeaveAction" type="action" required="false">
+                <caption>On leave action</caption>
+                <description>Action to trigger when parallax is leaved</description>
+            </property>
+        </propertyGroup>
+
+
+    </properties>
+</widget>
