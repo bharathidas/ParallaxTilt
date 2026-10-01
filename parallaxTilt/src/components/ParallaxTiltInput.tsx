@@ -1,77 +1,67 @@
-import { ReactElement, createElement } from "react";
+import { CSSProperties, ReactElement, createElement } from "react";
 import Tilt from "react-parallax-tilt";
-import { ListValue } from "mendix";
-import "../ui/ParallaxTilt.css";
+import { ListValue, ListWidgetValue } from "mendix";
+import classNames from "classnames";
 
-//interface for component props
+export type GlarePosition = "top" | "right" | "bottom" | "left" | "all";
+
 export interface ParallaxTiltInputProps {
+    className?: string;
+    style?: CSSProperties;
     data: ListValue;
-    contentTemplate: any;
-    orientation?: "horizontal" | "vertical";
+    contentTemplate: ListWidgetValue;
+    orientation: "horizontal" | "vertical";
     tiltEnable: boolean;
     tiltMaxAngleX: number;
     tiltMaxAngleY: number;
     glareEnable: boolean;
     glareMaxOpacity: number;
     glareColor: string;
-    glarePosition: string;
+    glarePosition: GlarePosition;
     scale: number;
     perspective: number;
     transitionEasing: string;
     transitionSpeed: number;
-    flipVertically:boolean;
+    flipVertically: boolean;
     flipHorizontally: boolean;
-    onMoveAction?: () => void;
-    onEnterAction?: () => void;
-    onLeaveAction?: () => void;
+    onMove?: () => void;
+    onEnter?: () => void;
+    onLeave?: () => void;
 }
 
-type GlarePosition = 'top' | 'right' | 'bottom' | 'left' | 'all';
-
 export function ParallaxTiltInput(props: ParallaxTiltInputProps): ReactElement {
-    const { tiltEnable, tiltMaxAngleX, tiltMaxAngleY, glareEnable, glareMaxOpacity, glareColor, glarePosition, scale, perspective, transitionEasing, transitionSpeed, data, contentTemplate, orientation = "horizontal",flipHorizontally,flipVertically, onMoveAction, onEnterAction, onLeaveAction } = props;
-
-    // Function to convert a string to a valid GlarePosition type
-    function toGlarePosition(value: string): GlarePosition {
-        const validPositions: GlarePosition[] = ["top", "right", "bottom", "left", "all"];
-        return validPositions.includes(value as GlarePosition) ? (value as GlarePosition) : "top";
-    }
+    const { data, contentTemplate, orientation } = props;
 
     return (
-        // Container div with a dynamic class based on orientation
-        <div className={`tilt-container ${orientation}`}>
-            {data.items?.map((item, index) => (
+        <div
+            className={classNames("widget-parallaxtilt", `widget-parallaxtilt-${orientation}`, props.className)}
+            style={props.style}
+        >
+            {data.items?.map(item => (
                 <Tilt
-                    key={index}
-                    tiltEnable={tiltEnable}
-                    tiltMaxAngleX={orientation === "horizontal" ? tiltMaxAngleX : 0} // Tilt effect based on orientation
-                    tiltMaxAngleY={orientation === "vertical" ? tiltMaxAngleY : 0}
-                    glareEnable={glareEnable}
-                    glareMaxOpacity={glareMaxOpacity}
-                    glareColor={glareColor}
-                    glarePosition={toGlarePosition(glarePosition)}
-                    scale={scale}
-                    perspective={perspective}
-                    transitionEasing={transitionEasing}
-                    transitionSpeed={transitionSpeed}
-                    flipHorizontally={flipHorizontally}
-                    flipVertically={flipVertically}
-                    onMove={onMoveAction}
-                    onLeave={onLeaveAction}
-                    onEnter={onEnterAction}
-
+                    key={item.id}
+                    className="widget-parallaxtilt-card"
+                    tiltEnable={props.tiltEnable}
+                    tiltMaxAngleX={props.tiltMaxAngleX}
+                    tiltMaxAngleY={props.tiltMaxAngleY}
+                    glareEnable={props.glareEnable}
+                    glareMaxOpacity={props.glareMaxOpacity}
+                    glareColor={props.glareColor}
+                    glarePosition={props.glarePosition}
+                    glareBorderRadius="inherit"
+                    scale={props.scale}
+                    perspective={props.perspective}
+                    transitionEasing={props.transitionEasing}
+                    transitionSpeed={props.transitionSpeed}
+                    flipHorizontally={props.flipHorizontally}
+                    flipVertically={props.flipVertically}
+                    onMove={props.onMove}
+                    onEnter={props.onEnter}
+                    onLeave={props.onLeave}
                 >
-                    {/* Content container inside the tilt effect */}
-                    <div className="content">
-                        <div className="slide">
-                            {contentTemplate?.get(item)}{/* Render content from the Mendix template */}
-                        </div>
-                    </div>
+                    <div className="widget-parallaxtilt-content">{contentTemplate.get(item)}</div>
                 </Tilt>
             ))}
         </div>
     );
-
-
-
 }

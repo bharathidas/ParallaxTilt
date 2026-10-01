@@ -44,8 +44,7 @@ export interface ParallaxTiltPreviewProps {
     style: string;
     styleObject?: CSSProperties;
     readOnly: boolean;
-    renderMode: "design" | "xray" | "structure";
-    translate: (text: string) => string;
+    renderMode?: "design" | "xray" | "structure";
     orientationKey: OrientationKeyEnum;
     data: {} | { caption: string } | { type: string } | null;
     contentTemplate: { widgetCount: number; renderer: ComponentType<{ children: ReactNode; caption?: string }> };
